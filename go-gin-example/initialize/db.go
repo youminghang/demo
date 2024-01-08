@@ -1,4 +1,4 @@
-package initilize
+package initialize
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ import (
 
 func InitDB() {
 	// dsn := "root:123@tcp(192.168.0.36:3306)/mxshop_goods_srv?charset=utf8mb4&parseTime=True&loc=Local"
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/mxshop_goods_srv?charset=utf8mb4&parseTime=True&loc=Local",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/blog?charset=utf8mb4&parseTime=True&loc=Local",
 		setting.ServerConfig.MysqlInfo.User, setting.ServerConfig.MysqlInfo.Password, setting.ServerConfig.MysqlInfo.Host, setting.ServerConfig.MysqlInfo.Port)
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags),

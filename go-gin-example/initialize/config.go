@@ -1,4 +1,4 @@
-package initilize
+package initialize
 
 import (
 	"encoding/json"
