@@ -13,6 +13,7 @@ replace (
 	github.com/youminghang/go-gin-example/pkg/util => /workspaces/demo/go-gin-example/pkg/util
 	github.com/youminghang/go-gin-example/pkg/util/register/consul => /workspaces/demo/go-gin-example/pkg/util/register/consul
 	github.com/youminghang/go-gin-example/routers => /workspaces/demo/go-gin-example/routers
+
 )
 
 require (

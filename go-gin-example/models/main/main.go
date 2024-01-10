@@ -49,8 +49,12 @@ func main() {
 
 	// 定义一个表结构，将表结构直接生成对应的表 - migrations
 	// 迁移 schema
-	_ = db.AutoMigrate(&models.Tag{}, &models.Article{}, &models.Auth{})
-
+	//_ = db.AutoMigrate(&models.Tag{}, &models.Article{}, &models.Auth{})
+	tag := models.Tag{
+		Name: "test2",
+		CreatedBy: "ymh",
+	}
+	db.Model(&models.Tag{}).Save(&tag)
 	// Using custom options
 	/*
 		options := &password.Options{16, 100, 32, sha512.New}

@@ -22,6 +22,7 @@ type JWTConfig struct {
 type ServerConfig struct {
 	Name         string       `mapstructure:"name" json:"name"`
 	Host         string       `mapstructure:"host" json:"host"`
+	Url          string       `mapstructure:"url" json:"url"`
 	Port         int          `mapstructure:"port" json:"port"`
 	Tags         []string     `mapstructure:"tags" json:"tags"`
 	MysqlInfo    MysqlConfig  `mapstructure:"mysql" json:"mysql"`
@@ -29,6 +30,8 @@ type ServerConfig struct {
 	JWTInfo      JWTConfig    `mapstructure:"jwt" json:"jwt"`
 	ReadTimeOut  int          `mapstructure:"read_time_out" json:"read_time_out"`
 	WriteTimeOut int          `mapstructure:"write_time_out" json:"write_time_out"`
+	RunMode      string       `mapstructure:"run_mode" json:"run_mode"`
+	PageSize     int          `mapstructure:"page_size" json:"page_size"`
 }
 
 type ConsulConfig struct {
