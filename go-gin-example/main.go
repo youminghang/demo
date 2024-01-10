@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-	"time"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/gin-gonic/gin"
 	uuid "github.com/satori/go.uuid"
@@ -28,15 +29,19 @@ func main() {
 	registry := consul.NewRegistry(setting.ServerConfig.ConsulInfo.Host, setting.ServerConfig.ConsulInfo.Port)
 	serviceId := uuid.NewV4().String()
 	registry.Register(setting.ServerConfig.Host, setting.ServerConfig.Port, setting.ServerConfig.Name, setting.ServerConfig.Tags, serviceId)
-	zap.S().Debug("启动服务器，端口: ", setting.ServerConfig.Port)
 
-	s := &http.Server{
-		Addr:           fmt.Sprintf(":%d", setting.ServerConfig.Port),
-		Handler:        router,
-		ReadTimeout:    time.Duration(setting.ServerConfig.ReadTimeOut),
-		WriteTimeout:   time.Duration(setting.ServerConfig.WriteTimeOut),
-		MaxHeaderBytes: 1 << 20,
+	zap.S().Debug("启动服务器，端口: ", setting.ServerConfig.Port)
+	go func() {
+		if err := router.Run(fmt.Sprintf(":%d", setting.ServerConfig.Port)); err != nil {
+			zap.S().Panic("启动失败:", err.Error())
+		}
+	}()
+	quit := make(chan os.Signal)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+	if err := registry.Deregister(serviceId); err != nil {
+		zap.S().Info("注销失败 err：", err.Error())
 	}
-	s.ListenAndServe()
+	zap.S().Info("注销成功")
 
 }

@@ -1,6 +1,6 @@
 module github.com/youminghang/go-gin-example
 
-go 1.21.5
+go 1.20
 
 replace (
 	github.com/youminghang/go-gin-example/conf => /workspaces/demo/go-gin-example/pkg/conf
@@ -18,7 +18,9 @@ replace (
 require (
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.9.1
+	github.com/hashicorp/consul/api v1.26.1
 	github.com/nacos-group/nacos-sdk-go v1.1.4
+	github.com/satori/go.uuid v1.2.0
 	github.com/spf13/viper v1.18.2
 	github.com/unknwon/com v1.0.1
 	go.uber.org/zap v1.26.0
@@ -41,7 +43,6 @@ require (
 	github.com/go-playground/validator/v10 v10.14.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
-	github.com/hashicorp/consul/api v1.26.1 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-hclog v1.5.0 // indirect
@@ -68,7 +69,6 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
-	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
