@@ -51,8 +51,9 @@ func main() {
 	// 迁移 schema
 	//_ = db.AutoMigrate(&models.Tag{}, &models.Article{}, &models.Auth{})
 	tag := models.Tag{
-		Name: "test2",
+		Name:      "test2",
 		CreatedBy: "ymh",
+		State:     1,
 	}
 	db.Model(&models.Tag{}).Save(&tag)
 	// Using custom options

@@ -18,8 +18,10 @@ func main() {
 	initialize.InitLogger()
 	initialize.InitConfig()
 	initialize.InitDB()
-
 	r := routers.InitRouter()
+	if err := initialize.InitTrans("zh"); err != nil {
+		panic(err)
+	}
 
 	registry := consul.NewRegistry(setting.ServerConfig.ConsulInfo.Host, setting.ServerConfig.ConsulInfo.Port)
 	serviceId := uuid.NewV4().String()
