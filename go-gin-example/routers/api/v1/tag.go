@@ -2,7 +2,6 @@ package v1
 
 import (
 	"net/http"
-	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -86,28 +85,47 @@ func EditTag(c *gin.Context) {
 		HandleValidatorError(c, err)
 		return
 	}
+
+	id := com.StrTo(c.Param("id")).MustInt()
 	var tag models.Tag
 	code := e.SUCCESS
-	if result := setting.DB.Model(&models.Tag{}).First(&tag, *tagForm.Id); result.RowsAffected == 0 {
+	// 查询这个id的tag是否存在
+	if result := setting.DB.First(&tag, id); result.RowsAffected == 0 {
 		code = e.ERROR_NOT_EXIST_TAG
 	} else {
-		tag.ID = *tagForm.Id
 		tag.Name = tagForm.Name
 		tag.UpdatedBy = tagForm.UpdatedBy
-		if state, hasState := c.GetPostForm("state"); hasState {
-			tag.State, _ = strconv.Atoi(state)
+		if tagForm.State != nil {
+			tag.State = *tagForm.State
 		}
 		setting.DB.Save(&tag)
 	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"code": code,
 		"msg":  e.GetMsg(code),
 		"data": make(map[string]interface{}),
 	})
+
 }
 
 // 删除文章标签
 func DeleteTag(c *gin.Context) {
+	id := com.StrTo(c.Param("id")).MustInt()
+	var tag models.Tag
+	code := e.SUCCESS
+	// 查询这个id的tag是否存在
+	if result := setting.DB.First(&tag, id); result.RowsAffected == 0 {
+		code = e.ERROR_NOT_EXIST_TAG
+	} else {
+		setting.DB.Delete(&tag,id)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": code,
+		"msg":  e.GetMsg(code),
+		"data": make(map[string]interface{}),
+	})
 }
 
 func removeTopStruct(fileds map[string]string) map[string]string {

@@ -7,7 +7,6 @@ type AddTagForm struct {
 }
 
 type UpdateTagForm struct {
-	Id        *int32 `form:"id" json:"id" binding:"required"`
 	Name      string `form:"name" json:"name" binding:"required,min=1,max=100"`
 	UpdatedBy string `form:"updated_by" json:"updated_by" binding:"required,min=1,max=100"`
 	State     *int   `form:"state" json:"state" binding:"omitempty,oneof=0 1"`
