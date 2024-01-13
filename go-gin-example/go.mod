@@ -5,6 +5,7 @@ go 1.20
 replace (
 	github.com/youminghang/go-gin-example/conf => /workspaces/demo/go-gin-example/pkg/conf
 	github.com/youminghang/go-gin-example/config => /workspaces/demo/go-gin-example/config
+	github.com/youminghang/go-gin-example/forms => /workspaces/demo/go-gin-example/forms
 	github.com/youminghang/go-gin-example/initialize => /workspaces/demo/go-gin-example/initialize
 	github.com/youminghang/go-gin-example/middleware => /workspaces/demo/go-gin-example/middleware
 	github.com/youminghang/go-gin-example/models => /workspaces/demo/go-gin-example/models
@@ -13,12 +14,15 @@ replace (
 	github.com/youminghang/go-gin-example/pkg/util => /workspaces/demo/go-gin-example/pkg/util
 	github.com/youminghang/go-gin-example/pkg/util/register/consul => /workspaces/demo/go-gin-example/pkg/util/register/consul
 	github.com/youminghang/go-gin-example/routers => /workspaces/demo/go-gin-example/routers
-
 )
 
 require (
+	github.com/astaxie/beego v1.12.3
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.9.1
+	github.com/go-playground/locales v0.14.1
+	github.com/go-playground/universal-translator v0.18.1
+	github.com/go-playground/validator/v10 v10.14.0
 	github.com/hashicorp/consul/api v1.26.1
 	github.com/nacos-group/nacos-sdk-go v1.1.4
 	github.com/satori/go.uuid v1.2.0
@@ -32,7 +36,6 @@ require (
 require (
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.18 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
-	github.com/astaxie/beego v1.12.3 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
@@ -40,9 +43,6 @@ require (
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-errors/errors v1.0.1 // indirect
-	github.com/go-playground/locales v0.14.1 // indirect
-	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.14.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect

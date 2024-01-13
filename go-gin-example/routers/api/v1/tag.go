@@ -2,10 +2,8 @@ package v1
 
 import (
 	"net/http"
-	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 	"github.com/unknwon/com"
 	"github.com/youminghang/go-gin-example/forms"
 	"github.com/youminghang/go-gin-example/models"
@@ -118,7 +116,7 @@ func DeleteTag(c *gin.Context) {
 	if result := setting.DB.First(&tag, id); result.RowsAffected == 0 {
 		code = e.ERROR_NOT_EXIST_TAG
 	} else {
-		setting.DB.Delete(&tag,id)
+		setting.DB.Delete(&tag, id)
 	}
 
 	c.JSON(http.StatusOK, gin.H{
@@ -126,28 +124,4 @@ func DeleteTag(c *gin.Context) {
 		"msg":  e.GetMsg(code),
 		"data": make(map[string]interface{}),
 	})
-}
-
-func removeTopStruct(fileds map[string]string) map[string]string {
-	rsp := map[string]string{}
-	for filed, err := range fileds {
-		rsp[filed[strings.Index(filed, ".")+1:]] = err
-	}
-	return rsp
-}
-
-func HandleValidatorError(c *gin.Context, err error) {
-	code := e.INVALID_PARAMS
-	errs, ok := err.(validator.ValidationErrors)
-	if !ok {
-		c.JSON(http.StatusOK, gin.H{
-			"code": code,
-			"msg":  err.Error(),
-		})
-	}
-	c.JSON(http.StatusBadRequest, gin.H{
-		"code": code,
-		"msg":  removeTopStruct(errs.Translate(setting.Trans)),
-	})
-	return
 }

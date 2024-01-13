@@ -6,11 +6,11 @@ import (
 	"gorm.io/gorm"
 )
 
-func GetPage(c *gin.Context, pageSize int) int {
+func GetPage(c *gin.Context) int {
 	result := 0
 	page, _ := com.StrTo(c.Query("page")).Int()
 	if page > 0 {
-		result = (page - 1) * pageSize
+		result = (page - 1)
 	}
 
 	return result
