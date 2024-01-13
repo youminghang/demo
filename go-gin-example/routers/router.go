@@ -4,7 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/youminghang/go-gin-example/middlewares"
 	"github.com/youminghang/go-gin-example/pkg/setting"
+	"github.com/youminghang/go-gin-example/routers/api"
 	v1 "github.com/youminghang/go-gin-example/routers/api/v1"
 )
 
@@ -16,7 +18,9 @@ func InitRouter() *gin.Engine {
 	r.GET("/health", func(c *gin.Context) {
 		c.Status(http.StatusOK)
 	})
+	r.GET("/auth", api.GetAuth)
 	apiv1 := r.Group("api/v1")
+	apiv1.Use(middlewares.JWTAuth())
 	{
 		//获取标签列表
 		apiv1.GET("/tags", v1.GetTags)

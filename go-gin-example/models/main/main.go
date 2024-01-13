@@ -50,22 +50,11 @@ func main() {
 	// 定义一个表结构，将表结构直接生成对应的表 - migrations
 	// 迁移 schema
 	//_ = db.AutoMigrate(&models.Tag{}, &models.Article{}, &models.Auth{})
-	tag := models.Tag{
-		Name:      "test2",
-		CreatedBy: "ymh",
-		State:     1,
-	}
-	db.Model(&models.Tag{}).Save(&tag)
-	// Using custom options
-	/*
-		options := &password.Options{16, 100, 32, sha512.New}
-		salt, encodedPwd := password.Encode("generic password", options)
-		newpassword := fmt.Sprintf("$pbkdf2-sha512$%s$%s", salt, encodedPwd)
-		fmt.Printf("%d %d %d", len(newpassword), len(salt), len(encodedPwd))
 
-		passwordInfo := strings.Split(newpassword, "$")
-		fmt.Println(passwordInfo)
-		check := password.Verify("generic password", passwordInfo[2], passwordInfo[3], options)
-		fmt.Println(check) // true
-	*/
+	auth := models.Auth{
+		UserName: "user1",
+		PassWord: "123",
+	}
+	db.Save(&auth)
+
 }

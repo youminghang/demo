@@ -8,6 +8,7 @@ replace (
 	github.com/youminghang/go-gin-example/forms => /workspaces/demo/go-gin-example/forms
 	github.com/youminghang/go-gin-example/initialize => /workspaces/demo/go-gin-example/initialize
 	github.com/youminghang/go-gin-example/middleware => /workspaces/demo/go-gin-example/middleware
+	github.com/youminghang/go-gin-example/middlewares => /workspaces/demo/go-gin-example/middlewares
 	github.com/youminghang/go-gin-example/models => /workspaces/demo/go-gin-example/models
 	github.com/youminghang/go-gin-example/pkg/e => /workspaces/demo/go-gin-example/pkg/e
 	github.com/youminghang/go-gin-example/pkg/setting => /workspaces/demo/go-gin-example/pkg/setting
@@ -18,6 +19,7 @@ replace (
 
 require (
 	github.com/astaxie/beego v1.12.3
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/locales v0.14.1

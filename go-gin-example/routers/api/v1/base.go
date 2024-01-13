@@ -56,3 +56,11 @@ func ExistArticleByID(id int32) bool {
 
 	return false
 }
+
+func CheckAuth(username string, password string) bool {
+	var auth models.Auth
+	if result := setting.DB.Where(models.Auth{UserName: username, PassWord: password}).First(&auth); result.RowsAffected == 0 {
+		return false
+	}
+	return true
+}
