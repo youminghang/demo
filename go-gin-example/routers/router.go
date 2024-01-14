@@ -2,6 +2,7 @@ package routers
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/youminghang/go-gin-example/middlewares"
@@ -17,6 +18,10 @@ func InitRouter() *gin.Engine {
 	gin.SetMode(setting.ServerConfig.RunMode)
 	r.GET("/health", func(c *gin.Context) {
 		c.Status(http.StatusOK)
+	})
+	r.GET("/home", func(c *gin.Context) {
+		time.Sleep(10 * time.Second)
+		c.String(http.StatusOK, "Welcome Gin Server")
 	})
 	r.GET("/auth", api.GetAuth)
 	apiv1 := r.Group("api/v1")

@@ -1,11 +1,11 @@
 package logging
 
 import (
-	"fmt"
 	"log"
 	"os"
-	"path/filepath"
 	"runtime"
+	"path/filepath"
+	"fmt"
 )
 
 type Level int
@@ -13,11 +13,11 @@ type Level int
 var (
 	F *os.File
 
-	DefaultPrefix      = ""
+	DefaultPrefix = ""
 	DefaultCallerDepth = 2
 
-	logger     *log.Logger
-	logPrefix  = ""
+	logger *log.Logger
+	logPrefix = ""
 	levelFlags = []string{"DEBUG", "INFO", "WARN", "ERROR", "FATAL"}
 )
 
