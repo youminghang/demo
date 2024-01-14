@@ -1,7 +1,8 @@
 package api
 
 import (
-	"log"
+	"github.com/youminghang/go-gin-example/pkg/logging"
+
 	"net/http"
 	"time"
 
@@ -32,28 +33,27 @@ func GetAuth(c *gin.Context) {
 	if ok {
 		if !v1.CheckAuth(username, password) {
 			code = e.ERROR_AUTH
-			return
+		} else {
+			j := middlewares.NewJWT()
+			claims := util.CustomClaims{
+				Username: a.Username,
+				Password: a.Password,
+				StandardClaims: jwt.StandardClaims{
+					NotBefore: time.Now().Unix(),              // 签名的生效时间
+					ExpiresAt: time.Now().Unix() + 60*60*24*7, // 设置7天过期
+					Issuer:    "imooc",
+				},
+			}
+			token, err := j.CreateToken(claims)
+			if err != nil {
+				code = e.ERROR_AUTH_TOKEN
+			}
+			data["token"] = token
+			code = e.SUCCESS
 		}
-		j := middlewares.NewJWT()
-		claims := util.CustomClaims{
-			Username: a.Username,
-			Password: a.Password,
-			StandardClaims: jwt.StandardClaims{
-				NotBefore: time.Now().Unix(),              // 签名的生效时间
-				ExpiresAt: time.Now().Unix() + 60*60*24*7, // 设置7天过期
-				Issuer:    "imooc",
-			},
-		}
-		token, err := j.CreateToken(claims)
-		if err != nil {
-			code = e.ERROR_AUTH_TOKEN
-		}
-		data["token"] = token
-		code = e.SUCCESS
-
 	} else {
 		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{

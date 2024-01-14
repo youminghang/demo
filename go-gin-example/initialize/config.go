@@ -18,6 +18,7 @@ func GetEnvInfo(env string) bool {
 	return viper.GetBool(env)
 }
 
+// 用viper捕获配置文件是否发生改变，如果发生了改变那么需要重启服务
 func InitConfig() {
 	debug := GetEnvInfo("GO_GIN_EXAMPLE_DEBUG")
 	configFilePrefix := "config"

@@ -11,6 +11,7 @@ replace (
 	github.com/youminghang/go-gin-example/middlewares => /workspaces/demo/go-gin-example/middlewares
 	github.com/youminghang/go-gin-example/models => /workspaces/demo/go-gin-example/models
 	github.com/youminghang/go-gin-example/pkg/e => /workspaces/demo/go-gin-example/pkg/e
+	github.com/youminghang/go-gin-example/pkg/logging => /workspaces/demo/go-gin-example/pkg/logging
 	github.com/youminghang/go-gin-example/pkg/setting => /workspaces/demo/go-gin-example/pkg/setting
 	github.com/youminghang/go-gin-example/pkg/util => /workspaces/demo/go-gin-example/pkg/util
 	github.com/youminghang/go-gin-example/pkg/util/register/consul => /workspaces/demo/go-gin-example/pkg/util/register/consul
