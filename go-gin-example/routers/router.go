@@ -5,6 +5,9 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+	_ "github.com/youminghang/go-gin-example/docs"
 	"github.com/youminghang/go-gin-example/middlewares"
 	"github.com/youminghang/go-gin-example/pkg/setting"
 	"github.com/youminghang/go-gin-example/routers/api"
@@ -24,6 +27,7 @@ func InitRouter() *gin.Engine {
 		c.String(http.StatusOK, "Welcome Gin Server")
 	})
 	r.GET("/auth", api.GetAuth)
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	apiv1 := r.Group("api/v1")
 	apiv1.Use(middlewares.JWTAuth())
 	{

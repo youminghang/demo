@@ -11,7 +11,6 @@ import (
 	"github.com/youminghang/go-gin-example/pkg/setting"
 )
 
-// 获取多个文章标签
 func GetTags(c *gin.Context) {
 	var tags []models.Tag
 	maps := make(map[string]interface{})
@@ -49,7 +48,13 @@ func GetTags(c *gin.Context) {
 	})
 }
 
-// 新增文章标签
+// @Summary 新增文章标签
+// @Produce  json
+// @Param name query string true "Name"
+// @Param state query int false "State"
+// @Param created_by query int false "CreatedBy"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+// @Router /api/v1/tags [post]
 func AddTag(c *gin.Context) {
 	tagForm := forms.AddTagForm{}
 	if err := c.ShouldBind(&tagForm); err != nil {
@@ -76,7 +81,14 @@ func AddTag(c *gin.Context) {
 
 }
 
-// 修改文章标签
+// @Summary 修改文章标签
+// @Produce  json
+// @Param id path int true "ID"
+// @Param name query string true "ID"
+// @Param state query int false "State"
+// @Param updated_by query string true "UpdatedBy"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+// @Router /api/v1/tags/{id} [put]
 func EditTag(c *gin.Context) {
 	tagForm := forms.UpdateTagForm{}
 	if err := c.ShouldBind(&tagForm); err != nil {
@@ -107,7 +119,6 @@ func EditTag(c *gin.Context) {
 
 }
 
-// 删除文章标签
 func DeleteTag(c *gin.Context) {
 	id := com.StrTo(c.Param("id")).MustInt()
 	var tag models.Tag

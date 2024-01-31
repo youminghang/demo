@@ -10,7 +10,6 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/vo"
 	"github.com/spf13/viper"
 	"github.com/youminghang/go-gin-example/pkg/setting"
-	"github.com/youminghang/go-gin-example/pkg/util"
 	"go.uber.org/zap"
 )
 
@@ -43,7 +42,7 @@ func InitConfig() {
 		_ = v.ReadInConfig()
 		_ = v.Unmarshal(setting.NacosConfig)
 		zap.S().Infof("配置信息: %v", setting.NacosConfig)
-		util.GenSigHupSignal()
+		// util.GenSigHupSignal()
 	})
 	// 从Nacos中读取配置信息
 	// 创建clientConfig
