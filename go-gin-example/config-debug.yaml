@@ -1,0 +1,7 @@
+host: '139.9.49.75'
+port: 8848
+namespace: 'c21373a5-5993-4070-b8ed-d1c3655a6008'
+user: 'nacos'
+password: 'nacos'
+dataid: 'go-gin-example'
+group: 'dev'
